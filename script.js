@@ -44,3 +44,26 @@ function toggleRead(index) {
 myLibrary[index].toggleRead();
 displayBooks();
 }
+document.getElementById('newBookBtn').addEventListener('click', () => {
+    document.getElementById('bookFormContainer').classList.toggle('hidden');
+});
+
+document.getElementById('bookForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').checked;
+
+    const newBook = new Book(title, author, pages, read);
+    addBookToLibrary(newBook);
+
+    document.getElementById('bookForm').reset();
+    document.getElementById('bookFormContainer').classList.add('hidden');
+});
+addBookToLibrary(new Book('Don Quijote de la Mancha', 'Miguel de Cervantes', 1072, false));
+addBookToLibrary(new Book('Moby Dick', 'Herman Melville', 585, true));
+addBookToLibrary(new Book('Orgullo y Prejuicio', 'Jane Austen', 279, true));
+addBookToLibrary(new Book('Cien Años de Soledad', 'Gabriel García Márquez', 417, false));
+addBookToLibrary(new Book('1984', 'George Orwell', 328, true));
